@@ -1,0 +1,18 @@
+{
+	"externalReferenceCode": "testoverwrite001",
+	"listTypeEntries": [
+		{
+			"externalReferenceCode": "69ba6e0c-c6ed-2e35-7abd-87f067eb2ff0",
+			"key": "picklistTestItem",
+			"name": "Picklist Test Item",
+			"name_i18n": {
+				"en-US": "Picklist Test Item"
+			},
+			"type": ""
+		}
+	],
+	"name": "Picklist Test",
+	"name_i18n": {
+		"en-US": "Picklist Test"
+	}
+}
