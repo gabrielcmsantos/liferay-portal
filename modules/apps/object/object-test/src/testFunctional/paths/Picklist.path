@@ -36,6 +36,34 @@
 		<td></td>
 	</tr>
 	<tr>
+		<td>KEBAB_MENU</td>
+		<td>//*[contains(@class,'lexicon-icon-ellipsis')]</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>UPDATE_CONTINUE</td>
+		<td>//button[(@class='btn btn-warning')]</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>UPDATED_PICKLIST</td>
+		<td>//div[contains(@class,'table-list-title') and contains(.,'${key_picklistName}')]</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>IMPORT_BUTTON</td>
+		<td>//button[(@class='dropdown-item')]</td>
+		<td></td>
+	</tr>
+	<td>UPDATE_BUTTON</td>
+		<td>//button[(@class='btn btn-warning')]</td>
+		<td></td>
+	<tr>
+		<td>PICKLIST_KEBAB_MENU_OPTION</td>
+		<td>//button[(@class='dropdown-item') and contains(.,'${key_picklistOption}')]</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>UPDATE_PICKLIST_NAME</td>
 		<td>//input[@aria-describedby] | //*[text()='Name']/..//input[@type="text"]</td>
 		<td></td>
@@ -48,6 +76,16 @@
 	<tr>
 		<td>SELECT_PICKLIST_VIEW</td>
 		<td>//a[contains(.,'${key_picklistName}')]/../../..//button</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>GOTO_PICKLIST_VIEW</td>
+		<td>//button[(@class='dropdown-item') and contains(.,'View')]</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>GOTO_PICKLIST_EXPORT</td>
+		<td>//a[contains(.,'Export')]</td>
 		<td></td>
 	</tr>
 	<tr>
