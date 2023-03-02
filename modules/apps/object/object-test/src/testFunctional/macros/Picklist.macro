@@ -278,6 +278,10 @@ definition {
 		Click.javaScriptClick(locator1 = "Picklist#SAVE_BUTTON");
 	}
 
+	macro confirmUpdate {
+		Click(locator1 = "Picklist#UPDATE_CONTINUE");
+	}
+
 	macro deleteAllPicklistsViaAPI {
 		JSONObject.deleteAllPicklists(
 			userEmailAddress = ${userEmailAddress},
@@ -289,6 +293,16 @@ definition {
 			picklistName = ${picklistName},
 			userEmailAddress = ${userEmailAddress},
 			userPassword = ${userPassword});
+	}
+
+	macro gotoPicklistExport {
+		WaitForPageLoad();
+
+		Click.javaScriptClick(
+			key_picklistName = ${picklistName},
+			locator1 = "Picklist#SELECT_PICKLIST_VIEW");
+
+		Click.javaScriptClick(locator1 = "Picklist#GOTO_PICKLIST_EXPORT");
 	}
 
 	macro gotoPicklists {
@@ -347,8 +361,35 @@ definition {
 			value1 = "\RETURN");
 	}
 
+	macro selectImportButton {
+		Click(locator1 = "Picklist#IMPORT_BUTTON");
+	}
+
+	macro selectKebabMenuOption {
+		Click(locator1 = "Picklist#KEBAB_MENU");
+	}
+
 	macro selectPickilistModalFrame {
 		SelectFrame(locator1 = "Picklist#IFRAME_PICKLIST_MODAL");
+	}
+
+	macro selectPicklistImportFile {
+		var filePath = TestCase.getDependenciesDirPath(fileName = "${picklistFileName}.json");
+
+		UploadFile(
+			locator1 = "TextInput#FILE",
+			value1 = ${filePath});
+
+		Type(
+			key_fieldLabel = "Name",
+			locator1 = "TextInput#GENERIC_TEXT_INPUT",
+			value1 = ${picklistName});
+
+		Button.clickImport();
+	}
+
+	macro selectUpdateButton {
+		Click(locator1 = "Picklist#UPDATE_BUTTON");
 	}
 
 	macro updatePicklistItemName {
