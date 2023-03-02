@@ -112,9 +112,60 @@ definition {
 	@description = "LPS-175645 - It’s possible to overwrite Picklist when ERC is duplicated (Update Existing Picklist)"
 	@priority = 5
 	test CanOverwritePicklistWhenERCisDuplicated {
+		task ("Given a Picklist") {
+			Picklist.addPicklistViaAPI(picklistName = "Picklist Test");
 
-		// TODO pending implementation
+			Picklist.gotoPicklists();
 
+			Picklist.gotoPicklistView(picklistName = "Picklist Test");
+
+			SelectFrame(locator1 = "Picklist#IFRAME_PICKLIST_MODAL");
+
+			Type(
+				key_fieldLabel = "External Reference Code",
+				locator1 = "TextInput#GENERIC_TEXT_INPUT",
+				value1 = "testoverwrite001");
+
+			Picklist.clickSaveButton();
+
+			Picklist.gotoPicklists();
+
+			Picklist.gotoPicklistView(picklistName = "Picklist Test");
+
+			Picklist.addPicklistItemViaUI(picklistItemName = "Picklist Item Name Test");
+
+			Picklist.clickSaveButton();
+
+			Picklist.gotoPicklistExport(picklistName = "Picklist Test");
+
+			Refresh();
+		}
+
+		task ("When a picklist is imported") {
+			Picklist.gotoPicklistView(picklistName = "Picklist Test");
+
+			Picklist.addPicklistItemViaUI(picklistItemName = "Picklist Item Name Test 2");
+
+			Picklist.clickSaveButton();
+
+			Refresh();
+
+			Picklist.selectKebabMenuOption();
+
+			Picklist.selectImportButton();
+
+			Picklist.selectPicklistImportFile(
+				picklistFileName = "ListType_Picklist Test_44170_20230228172121536",
+				picklistName = "Updated Picklist");
+
+			Picklist.selectUpdateButton();
+		}
+
+		task ("Then the existing Picklist is updated") {
+			AssertElementPresent(
+				key_picklistName = "Picklist update",
+				locator1 = "Picklist#UPDATED_PICKLIST");
+		}
 	}
 
 }
