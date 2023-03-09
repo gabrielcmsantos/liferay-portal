@@ -21,6 +21,11 @@
 		<td></td>
 	</tr>
 	<tr>
+		<td>ASSERT_ACCOUNT_NAME</td>
+		<td>//div[(@class='dnd-td')]//span[contains(text(),'${key_tabName}')]</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>ADD_CUSTOM_OBJECT</td>
 		<td>//li[@class='nav-item navbar-breakpoint-d-none']/../li[(@class='nav-item')]</td>
 		<td></td>
