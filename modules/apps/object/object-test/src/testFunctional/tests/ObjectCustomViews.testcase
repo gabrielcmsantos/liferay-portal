@@ -400,7 +400,7 @@ definition {
 				pluralLabelName = "Custom Objects 170529");
 
 			ObjectAdmin.addObjectRelationshipViaAPI(
-				objectName_1 = "CustomObject170529",
+				objectName_1 = "AccountEntry",
 				objectName_2 = "CustomObject170529",
 				relationshipLabel = "Relationship",
 				relationshipName = "relationship",
@@ -416,11 +416,6 @@ definition {
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject170529");
 
-			ObjectAdmin.addObjectSingleFieldEntryViaAPI(
-				fieldName = "Custom Field 170529",
-				objectName = "CustomObject170529",
-				value = "Entry Test");
-
 			JSONAccountEntry.addAccountEntry(
 				accountEntryName = "Account Name 1",
 				accountEntryType = "Business");
@@ -428,9 +423,12 @@ definition {
 			JSONAccountEntry.addAccountEntry(
 				accountEntryName = "Account Name 2",
 				accountEntryType = "Business");
-		}
 
-		task ("When the user creates a filter and the relationship column can be selected as the filter") {
+			ObjectAdmin.addObjectSingleFieldEntryViaAPI(
+				fieldName = "customObjectField",
+				objectName = "CustomObject170529",
+				value = "Entry Test");
+
 			ObjectAdmin.openObjectAdmin();
 
 			ObjectPortlet.selectCustomObject(label = "Custom Object 170529");
@@ -438,6 +436,20 @@ definition {
 			CreateObject.selectTitleField(fieldLabel = "Custom Field");
 
 			CreateObject.saveObject();
+
+			ObjectAdmin.goToCustomObject(objectName = "CustomObject170529");
+
+			ObjectPortlet.viewEntryDetails(entry = "Entry Test");
+
+			ObjectPortlet.chooseEntryOnRelationshipField(entryOption = "Account Name 1");
+
+			CreateObject.saveObject();
+		}
+
+		task ("When the user creates a filter and the relationship column can be selected as the filter") {
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectCustomObject(label = "Custom Object 170529");
 
 			ObjectCustomViews.goToViewsTab();
 
@@ -459,6 +471,8 @@ definition {
 				filterBy = "Relationship",
 				filterType = "Includes",
 				filterValue = "Account Name 1");
+
+			PortletEntry.save();
 		}
 
 		task ("Then the user can filter relationship entries") {
@@ -466,11 +480,11 @@ definition {
 
 			AssertElementPresent(
 				key_tabName = "Account Name 1",
-				locator1 = "ObjectAdmin#ANY_TAB_ON_ENTRY");
+				locator1 = "ObjectAdmin#ASSERT_ACCOUNT_NAME");
 
 			AssertElementNotPresent(
 				key_tabName = "Account Name 2",
-				locator1 = "ObjectAdmin#ANY_TAB_ON_ENTRY");
+				locator1 = "ObjectAdmin#ASSERT_ACCOUNT_NAME");
 		}
 	}
 
