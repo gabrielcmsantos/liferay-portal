@@ -1666,7 +1666,7 @@ definition {
 	}
 
 	macro removeDuplicatedFieldsGroup {
-		if(!(isSet(groupIndex))){
+		if (!(isSet(groupIndex))) {
 			var groupIndex = 0;
 		}
 
