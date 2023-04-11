@@ -117,7 +117,7 @@
 </tr>
 <tr>
 	<td>ANY_WITH_ARIA_LABEL_INDEX</td>
-	<td>xpath=(//button[@aria-label='${ariaLabel}'])[${key_index}]</td>
+	<td>xpath=(//button[contains(@aria-label, 'Remove Duplicate Field Fields Group')])[${key_groupIndex}]</td>
 	<td></td>
 </tr>
 <tr>
