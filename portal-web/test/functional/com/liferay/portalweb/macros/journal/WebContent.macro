@@ -1666,9 +1666,13 @@ definition {
 	}
 
 	macro removeDuplicatedFieldsGroup {
+		if(!(isSet(groupIndex))){
+			var groupIndex = 0;
+		}
+
 		Click(
 			ariaLabel = "Remove Duplicate Field fieldset",
-			key_index = ${index},
+			key_groupIndex = ${index},
 			locator1 = "Button#ANY_WITH_ARIA_LABEL_INDEX");
 	}
 
