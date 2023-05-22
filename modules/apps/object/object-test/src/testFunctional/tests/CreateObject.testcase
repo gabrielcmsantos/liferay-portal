@@ -3290,6 +3290,10 @@ definition {
 
 		ObjectPortlet.searchEntryRelationshipField(entryValue = "Entry ABC");
 
+		WaitForElementPresent(
+			key_title = "Entry ABC",
+			locator1 = "ObjectPortlet#SEARCH_RELATIONSHIP_ENTRY");
+
 		AssertElementPresent(
 			locator1 = "ObjectPortlet#SEARCH_RELATIONSHIP_ENTRY",
 			value1 = "Entry ABC");
